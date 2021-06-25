@@ -1,7 +1,6 @@
 <template>
   <div class="inputBox shadow">
     <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo" />
-    <!-- <button v-on:click="addTodo">add</button> -->
     <span class="addContainer" v-on:click="addTodo">
       <i class="fas fa-plus addBtn"></i>
     </span>
@@ -18,29 +17,28 @@
 import Modal from "./common/Modal.vue";
 
 export default {
-  data: function () {
+  data () {
     return {
       newTodoItem: "",
       showModal: false
     };
   },
   methods: {
-    addTodo: function () {
-      //console.log(this.newTodoItem);
-      //저장하는 로직
+    addTodo () {
       if(this.newTodoItem!==''){
-        this.$emit('addTodoItem', this.newTodoItem);
+        const text=this.newTodoItem.trim();
+        this.$store.commit('addOneItem', text);
         this.clearInput();
       }else{
         this.showModal = !this.showModal;
       }
     },
-    clearInput: function () {
+    clearInput () {
       this.newTodoItem = "";
     },
   },
   components:{
-    Modal: Modal
+    Modal
   }
 };
 </script>
