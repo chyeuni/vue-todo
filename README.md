@@ -5,7 +5,7 @@ todo list 구현
 <br>
 ## 실행 방법
 
-``` bash
+``` bash    
 # install dependencies
 npm install
 
